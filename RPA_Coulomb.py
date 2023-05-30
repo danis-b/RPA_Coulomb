@@ -124,7 +124,6 @@ def average(num_kpoints, num_orb, Ham_K, scr_vq):
         for n in range(num_orb):
             dos_F += dirac_delta(kT, w_k[n])
             U_av += dirac_delta(kT, w_k[n]) * scr_vq[k]
-            print(dirac_delta(kT, w_k[n]))
             
     U_av = U_av/dos_F         
             
