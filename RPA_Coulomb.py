@@ -4,10 +4,6 @@ import numba
 from numba import jit
 
 
-@jit(nopython=True) 
-def fermi(kT,E):
-    N = 1/(np.exp(E/kT) + 1)
-    return N
 
 
 @jit(nopython=True) 
@@ -76,6 +72,11 @@ def bare_coulomb_q(kmesh):
 
 @jit(nopython=True) 
 def polarization_operator(num_orb, kmesh, Ham_K):
+
+    def fermi(kT,E):
+        N = 1/(np.exp(E/kT) + 1)
+        return N
+
     num_kpoints = kmesh[0] * kmesh[1] * kmesh[2]
     weight = 1/num_kpoints
     
@@ -107,8 +108,9 @@ def polarization_operator(num_orb, kmesh, Ham_K):
                             #rpa polarisation
                             for m in range(num_orb):
                                 for n in range(num_orb):
-                                    rpa_pol[q] += 2 * weight* (fermi(kT, w_k[m]) - fermi(kT, w_kq[n])) \
-                                    * np.dot(np.ascontiguousarray(v_k[n]), np.ascontiguousarray(v_kq[m]))**2 / (w_kq[m] - w_k[n] - 1j*delta) 
+                                    v_dots = np.dot(np.ascontiguousarray(v_k[n]), np.ascontiguousarray(v_kq[m]))  
+                                    rpa_pol[q] += 2 * weight * (fermi(kT, w_k[n]) - fermi(kT, w_kq[m])) * np.abs(v_dots)**2 / (w_kq[m] - w_k[n] - 1j*delta)
+
                                                                               
     return rpa_pol
 
