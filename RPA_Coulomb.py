@@ -213,6 +213,10 @@ if __name__ == '__main__':
     bare_vq_av = average(num_kpoints, num_orb, Ham_K, bare_vq.real)
     scr_vq_av = average(num_kpoints, num_orb, Ham_K, scr_vq.real)
     
+<<<<<<< HEAD
     print('Fermi energy: ',e_fermi, '; Bare/Scr Coulomb: ', bare_vq_av,'/',scr_vq_av) 
 
     
+=======
+    print('Fermi energy: ',e_fermi, 'Bare/Scr Coulomb: ', bare_vq_av,'/',scr_vq_av) 
+>>>>>>> 63b441218ac62afa069029c7b92a434f9ff8c75d
