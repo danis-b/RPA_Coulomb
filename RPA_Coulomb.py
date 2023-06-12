@@ -94,7 +94,7 @@ def polarization_operator(num_orb, kmesh, Ham_K):
         for q2 in range(kmesh[1]):
             for q3 in range(kmesh[2]): #q
                 q = (q1 * kmesh[1] * kmesh[2])  + (q2 * kmesh[2]) + q3
-#                 print("RPA_qmesh progress:", q)
+                print("RPA_qmesh progress... ", q)
         
                 for k1 in range(kmesh[0]):
                     for k2 in range(kmesh[1]):
@@ -159,7 +159,7 @@ if __name__ == '__main__':
     kmesh = np.array([20,20,20])
     num_kpoints = kmesh[0] * kmesh[1] * kmesh[2]
 
-    e_fermi = 11 # eV
+    e_fermi = 12 # eV
 
     cell_vec = np.array([[-1.742087135,   1.742087135,   3.467599447],
                         [1.742087135,  -1.742087135,   3.467599447], 
@@ -212,11 +212,5 @@ if __name__ == '__main__':
   
     bare_vq_av = average(num_kpoints, num_orb, Ham_K, bare_vq.real)
     scr_vq_av = average(num_kpoints, num_orb, Ham_K, scr_vq.real)
-    
-<<<<<<< HEAD
-    print('Fermi energy: ',e_fermi, '; Bare/Scr Coulomb: ', bare_vq_av,'/',scr_vq_av) 
+    print('Fermi energy: ',e_fermi, '; Bare/Scr Coulomb: ', bare_vq_av,'/',scr_vq_av)
 
-    
-=======
-    print('Fermi energy: ',e_fermi, 'Bare/Scr Coulomb: ', bare_vq_av,'/',scr_vq_av) 
->>>>>>> 63b441218ac62afa069029c7b92a434f9ff8c75d
